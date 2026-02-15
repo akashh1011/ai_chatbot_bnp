@@ -21,7 +21,7 @@ const Chat = () => {
   // Fetch all chat sessions for the sidebar on component load
   const fetchAllChats = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/chat/all", {
+      const response = await fetch("https://ai-chatbot-bnp.onrender.com/api/chat/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -44,7 +44,7 @@ const Chat = () => {
 
   const startNewChat = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/chat/new", {
+      const res = await fetch("https://ai-chatbot-bnp.onrender.com/api/chat/new", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -79,7 +79,7 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/chat`, {
+      const response = await fetch(`https://ai-chatbot-bnp.onrender.com/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex h-screen bg-white text-gray-800 overflow-hidden font-sans">
+    <div className="flex h-screen overflow-hidden font-sans text-gray-800 bg-white">
       {/* Pass session handlers to Sidebar */}
       <Sidebar
         chatList={chatList}
@@ -119,15 +119,15 @@ const Chat = () => {
         setActiveChatId={setActiveChatId} 
       />
 
-      <main className="flex-1 flex flex-col relative bg-white">
-        <header className="px-6 py-4 border-b border-gray-100 font-extrabold text-lg text-gray-900">
+      <main className="relative flex flex-col flex-1 bg-white">
+        <header className="px-6 py-4 text-lg font-extrabold text-gray-900 border-b border-gray-100">
           AI Chatbot
         </header>
 
-        <div className="flex-1 overflow-y-auto px-4 py-8 bg-white">
+        <div className="flex-1 px-4 py-8 overflow-y-auto bg-white">
           <div className="max-w-3xl mx-auto space-y-8">
             {messages.length === 0 && !isLoading && (
-              <div className="text-center text-gray-400 mt-20">
+              <div className="mt-20 text-center text-gray-400">
                 Start a new conversation...
               </div>
             )}

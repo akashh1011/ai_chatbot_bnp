@@ -19,7 +19,7 @@ const Sidebar = ({
     e.stopPropagation(); // Prevents switching to the chat while deleting it
 
     try {
-      const response = await fetch(`http://localhost:8000/api/chat/${chatId}`, {
+      const response = await fetch(`https://ai-chatbot-bnp.onrender.com/api/chat/${chatId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -38,11 +38,11 @@ const Sidebar = ({
   };
 
   return (
-    <aside className="hidden md:flex flex-col w-72 bg-gray-50 border-r border-gray-200">
+    <aside className="flex-col hidden border-r border-gray-200 md:flex w-72 bg-gray-50">
       <div className="p-4">
         <button
           onClick={onNewChat}
-          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-gray-200 rounded-2xl font-bold shadow-sm hover:bg-gray-50 transition-all active:scale-95"
+          className="flex items-center justify-center w-full gap-2 px-4 py-3 font-bold transition-all bg-white border border-gray-200 shadow-sm rounded-2xl hover:bg-gray-50 active:scale-95"
         >
           <Plus size={18} /> New Chat
         </button>
@@ -56,7 +56,7 @@ const Sidebar = ({
         <div className="space-y-1">
           {chatList && chatList.length > 0 ? (
             chatList.map((chat) => (
-              <div key={chat._id} className="group relative">
+              <div key={chat._id} className="relative group">
                 <button
                   onClick={() => onSwitchChat(chat)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-sm font-medium truncate pr-10 ${
@@ -88,7 +88,7 @@ const Sidebar = ({
               </div>
             ))
           ) : (
-            <p className="text-xs text-gray-400 px-3 italic">
+            <p className="px-3 text-xs italic text-gray-400">
               No previous chats
             </p>
           )}
@@ -98,7 +98,7 @@ const Sidebar = ({
       <div className="p-4 border-t border-gray-200">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2 text-gray-500 hover:text-red-600 transition-colors text-sm font-semibold"
+          className="flex items-center w-full gap-3 px-3 py-2 text-sm font-semibold text-gray-500 transition-colors hover:text-red-600"
         >
           <LogOut size={18} /> Logout
         </button>

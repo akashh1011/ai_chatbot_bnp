@@ -18,7 +18,7 @@ const Auth = ({ setAuthToken }) => {
     const API_URL = process.env.API_URL;
 
     try {
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
+      const response = await fetch(`https://ai-chatbot-bnp.onrender.com${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -41,14 +41,14 @@ const Auth = ({ setAuthToken }) => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-6">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+    <div className="flex items-center justify-center min-h-screen p-6 bg-gray-50">
+      <div className="w-full max-w-md p-10 bg-white border border-gray-100 shadow-xl rounded-3xl">
+        <h2 className="mb-8 text-3xl font-bold text-center text-gray-900">
           {isLogin ? "Welcome Back" : "Create Account"}
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-xl border border-red-100">
+          <div className="p-3 mb-4 text-sm text-red-600 border border-red-100 bg-red-50 rounded-xl">
             {error}
           </div>
         )}
@@ -89,11 +89,11 @@ const Auth = ({ setAuthToken }) => {
           </button>
         </form>
 
-        <p className="text-gray-500 text-center mt-8 text-sm">
+        <p className="mt-8 text-sm text-center text-gray-500">
           {isLogin ? "New to our AI?" : "Already have an account?"}
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="ml-2 text-blue-600 hover:underline font-bold transition-colors"
+            className="ml-2 font-bold text-blue-600 transition-colors hover:underline"
           >
             {isLogin ? "Sign up" : "Log in"}
           </button>
