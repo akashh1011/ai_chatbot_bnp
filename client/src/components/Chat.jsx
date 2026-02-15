@@ -40,7 +40,7 @@ const Chat = () => {
 
   useEffect(() => {
     fetchAllChats();
-  }, []);
+  });
 
   const startNewChat = async () => {
     try {
