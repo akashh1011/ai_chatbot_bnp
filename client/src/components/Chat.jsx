@@ -21,7 +21,7 @@ const Chat = () => {
   const fetchAllChats = useCallback(async () => {
     try {
       const response = await fetch(
-        "https://ai-chatbot-bnp.onrender.com/api/chat/all",
+        "http://localhost:8000/api/chat/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -46,7 +46,7 @@ const Chat = () => {
   const startNewChat = async () => {
     try {
       const res = await fetch(
-        "https://ai-chatbot-bnp.onrender.com/api/chat/new",
+        "http://localhost:8000/api/chat/new",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
@@ -84,7 +84,7 @@ const Chat = () => {
 
     try {
       const response = await fetch(
-        `https://ai-chatbot-bnp.onrender.com/api/chat`,
+        `http://localhost:8000/api/chat`,
         {
           method: "POST",
           headers: {

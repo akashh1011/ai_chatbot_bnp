@@ -3,7 +3,7 @@ import InputField from "./InputField";
 
 const Auth = ({ setAuthToken }) => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({name:"", email: "", password: "" });
   const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
@@ -15,10 +15,9 @@ const Auth = ({ setAuthToken }) => {
     setError("");
 
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/signup";
-    //const API_URL = process.env.API_URL;
 
     try {
-      const response = await fetch(`https://ai-chatbot-bnp.onrender.com${endpoint}`, {
+      const response = await fetch(`http://localhost:8000${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -54,7 +53,7 @@ const Auth = ({ setAuthToken }) => {
         )}
 
         <form onSubmit={handleAuthSubmit} className="space-y-6">
-          {isLogin === false && (
+          {!isLogin && (
             <InputField
               label="Name"
               name="name"
